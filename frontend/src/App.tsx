@@ -12,9 +12,10 @@ import EventDetails from "./components/Event/EventDetails";
 
 
 
+
 function App() {
 
-    const {username,login, logout,register} = useUser();
+    const {user,login, logout,register,} = useUser();
 
 
   return (
@@ -26,9 +27,9 @@ function App() {
             <Route path={"/"} element={<LoginPage login={login} register={register}/>}></Route>
 
             <Route element={
-                <ProtectedRoutes username={username}/>}>
+                <ProtectedRoutes user={user}/>}>
                 <Route path={"/home"} element={<FriendPage></FriendPage>}></Route>
-          <Route path={"/profile"} element={<ProfilePage />}></Route>
+          <Route path={"/profile"} element={<ProfilePage user={user}/>}></Route>
           <Route path={"/event"} element={<EventApp />}></Route>
           <Route path={"/event/:id"} element={<EventDetails/>}></Route>
             </Route>

@@ -58,7 +58,4 @@ public class UserService {
         return userRepo.findById(id);
     }
 
-    public User addUser(User user){
-        return userRepo.save(user);
-    }
 }
