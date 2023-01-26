@@ -1,6 +1,9 @@
 package com.example.backend;
 
 
+import com.example.backend.models.Car;
+import com.example.backend.models.TuningPart;
+import com.example.backend.models.User;
 import com.example.backend.repo.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -8,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,18 +53,22 @@ public class UserControllerTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser
+    @WithMockUser(username="flo")
     void login() throws Exception {
-        mockMvc.perform(post("/api/users/login").with(csrf())
+        userRepo.save(new User("1", "flo", "123456789", "flo@flo.com",
+                new Car("2","picture","description",
+                        List.of(new TuningPart("2", "name","shop")))));
+         mockMvc.perform(post("/api/users/login").with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                    "username": "user",
-                                    "password": "123"
+                                    "username": "flo",
+                                    "password": "123456789"
                                 }
                                 """))
                 .andExpect(status().isOk())
-                .andExpect(content().string("user"));
+                .andExpect(content().string("""
+                                {"id":"1","name":"flo","password":"123456789","email":"flo@flo.com","car":{"id":"2","img":"picture","description":"description","tuningParts":[{"id":"2","name":"name","shopUrl":"shop"}]}}"""));
     }
 
     @Test
@@ -75,12 +83,12 @@ public class UserControllerTest {
     @Test
     @DirtiesContext
     void saveUser() throws Exception {
-        MvcResult result = mockMvc.perform(post("/api/users/register")
+        MvcResult result = mockMvc.perform(post("/api/users/")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                    "username": "user",
+                                    "username": "flo",
                                     "password": "123",
                                     "email": "aghb@gjou.com"
                                 }

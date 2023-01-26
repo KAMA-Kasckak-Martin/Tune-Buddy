@@ -12,8 +12,8 @@ export default function ProfilePage(props:ProfileProps){
             <img src={props.user.car.img}/>
             <p>{props.user.car.description}</p>
             <div>
-                <li>{props.user.car.tuningParts.name}</li>
-                <li>{props.user.car.tuningParts.shopUrl}</li>
+                <li>{props.user.car.tuningParts[0].name}</li>
+                <li><a href={props.user.car.tuningParts[0].shopUrl}>{props.user.car.tuningParts[0].shopUrl}</a></li>
             </div>
 
         </div>

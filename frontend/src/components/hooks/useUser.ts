@@ -17,7 +17,7 @@ export default function useUser(){
         "id": "",
         "img": "",
         "description": "",
-        "tuningParts":emptyTuningPart
+        "tuningParts":[emptyTuningPart]
     }
     const  emptyUser:User={
         "id":"",

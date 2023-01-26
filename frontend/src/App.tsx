@@ -16,7 +16,7 @@ import EventDetails from "./components/Event/EventDetails";
 function App() {
 
     const {user,login, logout,register,} = useUser();
-
+    console.log(user)
 
   return (
     <div className="App">
