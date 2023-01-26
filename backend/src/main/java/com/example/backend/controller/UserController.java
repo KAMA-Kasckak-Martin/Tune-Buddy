@@ -46,7 +46,7 @@ public class UserController {
     }
     @PostMapping("/login")
     public Object login(){
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+        return userService.geuUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @PostMapping("logout")

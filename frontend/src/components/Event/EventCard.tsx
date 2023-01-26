@@ -22,7 +22,7 @@ export default function EventCard (props:EventCardProps){
     return(
         <div>
             <p> {props.event.name}</p>
-            <p> {props.event.id}</p>
+            <p> {props.event.description}</p>
             <button onClick={onDeleteClick}></button>
             <button onClick={onDetailClick}></button>
         </div>

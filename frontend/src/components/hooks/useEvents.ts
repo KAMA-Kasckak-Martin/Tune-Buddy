@@ -19,7 +19,7 @@ export default function useEvents() {
     }
 
     function addEvent(newEvent: NewEvent) {
-        return axios.post("/api/events", newEvent)
+        return axios.post("/api/events/addevent", newEvent)
             .then(response => response.data)
             .then((savedEvent) => setEvents(prevState => [...prevState, savedEvent]))
             .catch(console.error)
