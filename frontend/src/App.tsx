@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import FriendPage from "./components/FriendPage";
+import LoginPage from "./components/LoginPage";
+import useUser from "./components/hooks/useUser";
+import NavigationBar from "./components/NavBar";
+import ProfilePage from "./components/ProfilePage";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import EventApp from "./components/EventApp";
+import EventDetails from "./components/Event/EventDetails";
+
+
+
 
 function App() {
+
+    const {user,login, logout,register,} = useUser();
+    console.log(user)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+          <NavigationBar logout={logout}/>
+        <Routes>
+            <Route path={"/login"} element={<LoginPage login={login} register={register}/>}></Route>
+            <Route path={"/"} element={<LoginPage login={login} register={register}/>}></Route>
+
+            <Route element={
+                <ProtectedRoutes user={user}/>}>
+                <Route path={"/home"} element={<FriendPage></FriendPage>}></Route>
+          <Route path={"/profile"} element={<ProfilePage user={user}/>}></Route>
+          <Route path={"/event"} element={<EventApp />}></Route>
+          <Route path={"/event/:id"} element={<EventDetails/>}></Route>
+            </Route>
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
