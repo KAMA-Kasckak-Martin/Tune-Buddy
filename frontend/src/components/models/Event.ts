@@ -6,4 +6,5 @@ export type Event={
 
 export type NewEvent={
     name: string
+    description: string
 }

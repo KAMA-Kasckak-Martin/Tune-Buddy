@@ -21,7 +21,7 @@ public class UserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         return userRepo.findByName(name)
-                .map(foundUser -> new User(foundUser.name(), foundUser.password(), List.of()))
+                .map(foundUser -> new User(foundUser.getName(), foundUser.getPassword(), List.of()))
                 .orElseThrow(() -> new UsernameNotFoundException(name + " not found!"));
     }
 }

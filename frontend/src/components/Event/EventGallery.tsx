@@ -20,7 +20,7 @@ export default function EventGallery(props:EventGalleryProps){
     return(
         <div>
             <input placeholder={"Search event"} value={searchText} onChange={onSearchChange}/>
-            <div>{filterEvents.map(event=><EventCard event={event}  removeEvent={props.removeEvent}/>)}</div>
+            <div>{filterEvents.map((event, index)=><EventCard key={index} event={event} removeEvent={props.removeEvent}/>)}</div>
         </div>
     )
 }

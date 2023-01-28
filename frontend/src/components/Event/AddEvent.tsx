@@ -9,33 +9,28 @@ export type AddEventProps={
 export default function AddEvent(props:AddEventProps){
 
     const [name,setName]=useState<string>("")
-    const [description,setDescription]=useState<string>("")
-
+    const [description,setDesc]=useState<string>("")
 
     function onNameChange(event:ChangeEvent<HTMLInputElement>){
         setName(event.target.value)
     }
-    function onDescriptionChange(event:ChangeEvent<HTMLInputElement>){
-        setDescription(event.target.value)
+
+    function onDescChange(event:ChangeEvent<HTMLInputElement>){
+        setDesc(event.target.value)
     }
 
-
-    function onSaveClick(){
-        props.addEvent({name:name})
-            .then(()=>{
+    function onSaveClick() {
+        props.addEvent({name: name, description: description})
+            .then(() => {
                 setName("")
-                setDescription("")
+                setDesc("")
             })
     }
 
-
-
-
-
     return(
         <div>
-            <TextField placeholder={" your event "} value={name} onChange={onNameChange}/>
-            <TextField placeholder={" description "} value={description} onChange={onDescriptionChange}/>
+            <TextField placeholder={"name"} value={name} onChange={onNameChange}/>
+            <TextField placeholder={"description"} value={description} onChange={onDescChange}/>
             <Button size={"large"} variant={"contained"} onClick={onSaveClick}>Save</Button>
         </div>
     )

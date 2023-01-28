@@ -1,22 +1,28 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {Button} from "@mui/material";
-import "./NavBar.css"
+import {User} from "./models/User";
 
 
 type NavigationBarProps = {
     logout: () => Promise<string>
+    user: User
 }
 
 export default function NavigationBar(props: NavigationBarProps) {
-
+    const navigate= useNavigate()
     return (
-        <div className={"nav-bar"}>
-            <NavLink className={"link"} to={"/"} >Startseite</NavLink>
-            <NavLink className={"link"} to={"/login"} >Login/Register</NavLink>
-            <NavLink className={"link"} to={"/home"} >Friends</NavLink>
-            <NavLink className={"link"} to={"/profile"} >Profile</NavLink>
-            <NavLink className={"link"} to={"/event"} >Events</NavLink>
-            <Button onClick={props.logout}>Logout</Button>
-        </div>
+        <div>{ props.user.id ?
+            <div className={"nav-bar"}>
+                <NavLink to={"/"}>Startseite</NavLink>
+                <NavLink to={"/home"}>Friends</NavLink>
+                <NavLink to={"/profile"}>Profile</NavLink>
+                <NavLink to={"/event"}>Events</NavLink>
+                <Button onClick={() => {
+                    props.logout();
+                    navigate("/login");
+                }}>Logout</Button>
+            </div>
+            : null
+        }    </div>
     )
 }

@@ -1,8 +1,8 @@
 package com.example.backend.controller;
 
-
 import com.example.backend.models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import com.example.backend.service.UserService;
 
@@ -45,8 +45,15 @@ public class UserController {
         return userService.saveUser(user);
     }
     @PostMapping("/login")
-    public Object login(){
-        return userService.geuUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+    public Object login() {
+        return userService.getUserByName(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
+
+    @PutMapping("/{id}")
+    public User addCar(@PathVariable String id, @RequestBody User user) {
+        User userData = userService.getUserById(id).orElseThrow(() -> new UsernameNotFoundException(id + " user not found!"));
+        userData.setCar(user.getCar());
+        return userService.updateUser(userData);
     }
 
     @PostMapping("logout")
@@ -55,8 +62,4 @@ public class UserController {
         SecurityContextHolder.clearContext();
         return "anonymousUser";
     }
-
-
-
-
 }

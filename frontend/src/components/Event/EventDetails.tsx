@@ -1,12 +1,9 @@
 import {useParams} from "react-router-dom";
 import useEvent from "../hooks/useEvent";
+import {useEffect} from "react";
 
 export default function EventDetails() {
-
-    const params = useParams()
-
-    const id: string | undefined = params.id
-
+    const { id } = useParams();
     const {event} = useEvent(id)
 
     if (!event) {

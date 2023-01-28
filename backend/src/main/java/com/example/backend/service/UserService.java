@@ -1,6 +1,5 @@
 package com.example.backend.service;
 
-
 import com.example.backend.models.Car;
 import com.example.backend.models.TuningPart;
 import com.example.backend.models.User;
@@ -24,42 +23,43 @@ public class UserService {
         this.idService = idService;
         this.argon2Service = argon2Service;
     }
-    public User saveUser( User user) {
+    public User saveUser(User user) {
         User UserToSave= new User(
                 idService.generateId(),
-                user.name(),
-                argon2Service.encode(user.password()),
-                user.email(),
-                new Car("id",
+                user.getName(),
+                argon2Service.encode(user.getPassword()),
+                user.getEmail(),
+                new Car(idService.generateId(),
                         "picture",
                         "description",
-                        List.of(new TuningPart("id","name","url"))
-                        )
+                        List.of(new TuningPart(idService.generateId(),"name","url"))
+                )
         );
 
         userRepo.save(UserToSave);
 
         return new User(
-                UserToSave.id(),
-                UserToSave.name(),
+                idService.generateId(),
+                UserToSave.getName(),
                 "***",
-                UserToSave.email(),
-                UserToSave.car()
+                UserToSave.getEmail(),
+                UserToSave.getCar()
         );
     }
 
-
+    public Optional<User> getUserByName(String name){
+        return userRepo.findByName(name);
+    }
 
     public List<User> getAllUsers(){
         return userRepo.findAll();
-    }
-
-    public Optional<User> geuUserByName(String name){
-        return userRepo.findByName(name);
     }
 
     public Optional<User> getUserById(String id){
         return userRepo.findById(id);
     }
 
+    public User updateUser(User user){
+        return userRepo.save(user);
+    }
 }

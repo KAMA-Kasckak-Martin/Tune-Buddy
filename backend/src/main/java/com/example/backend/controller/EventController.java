@@ -20,9 +20,7 @@ public class EventController {
     }
 
     @GetMapping
-    public List<Event> getAllEvents(){
-        return eventService.getAllEvents();
-    }
+    public List<Event> getAllEvents() { return eventService.getAllEvents(); }
 
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable String id){
@@ -35,7 +33,7 @@ public class EventController {
     }
 
     @DeleteMapping("/{id}")
-    public void removeEvent(@PathVariable String id){
-         eventService.deleteById(id);
+    public void deleteById(@PathVariable String id){
+        eventService.deleteById(id);
     }
 }

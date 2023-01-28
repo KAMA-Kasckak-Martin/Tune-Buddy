@@ -3,21 +3,20 @@ import axios from "axios";
 import {User} from "../models/User";
 import {Car} from "../models/Car";
 import {TuningPart} from "../models/TuningPart";
+import {useNavigate} from "react-router-dom";
 
 export default function useUser(){
 
-
-
-    const emptyTuningPart:TuningPart={
+    const emptyTuningPart:Array<TuningPart>=[{
         "id": "",
         "name": "",
         "shopUrl": ""
-    }
+    }]
     const emptyCar:Car={
         "id": "",
         "img": "",
         "description": "",
-        "tuningParts":[emptyTuningPart]
+        "tuningParts":emptyTuningPart
     }
     const  emptyUser:User={
         "id":"",
@@ -56,7 +55,6 @@ export default function useUser(){
                 setUser(data)
                 return data
             })
-
     }
 
     function register(name: string, email: string, password: string){
@@ -66,5 +64,9 @@ export default function useUser(){
             password: password
         }).catch(e => console.error(e))
     }
-    return {user, login, logout, register}
+    function setUpdatedUser(user: User) {
+        setUser(user)
+    }
+
+    return {user, setUpdatedUser, login, logout, register}
 }

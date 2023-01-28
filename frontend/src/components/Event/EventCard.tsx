@@ -16,13 +16,12 @@ export default function EventCard (props:EventCardProps){
     }
 
     function onDetailClick(){
-        navigate("/events/"+ props.event.id)
+        navigate("/event/"+ props.event.id)
     }
 
     return(
         <div>
             <p> {props.event.name}</p>
-            <p> {props.event.description}</p>
             <button onClick={onDeleteClick}></button>
             <button onClick={onDetailClick}></button>
         </div>

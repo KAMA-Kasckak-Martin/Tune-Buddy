@@ -4,5 +4,5 @@ export type Car={
     id: string,
     img: string,
     description: string,
-    tuningParts: TuningPart[]
+    tuningParts: Array<TuningPart>
 }

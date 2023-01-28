@@ -2,10 +2,12 @@ import {Button, TextField} from "@mui/material";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Register from "./Register";
+import {User} from "./models/User";
 
 type LoginPageProps = {
-    login: (username: string, password: string) => Promise<string>
+    login: (username: string, password: string) => Promise<User>
     register: (user: string, email: string, password: string)=>void
+    setUser:(user:User)=> void
 }
 
 
@@ -30,6 +32,7 @@ export default function LoginPage(props: LoginPageProps) {
         props.login(username, password)
             .then(user => {
                 navigate("/profile")
+                props.setUser(user)
             })
     }
 
