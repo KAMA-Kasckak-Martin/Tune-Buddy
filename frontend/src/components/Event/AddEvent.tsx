@@ -24,7 +24,7 @@ export default function AddEvent(props:AddEventProps){
         props.addEvent({name:name})
             .then(()=>{
                 setName("")
-
+                setDescription("")
             })
     }
 

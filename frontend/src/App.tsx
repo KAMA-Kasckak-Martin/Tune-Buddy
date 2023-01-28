@@ -9,6 +9,7 @@ import ProfilePage from "./components/ProfilePage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import EventApp from "./components/EventApp";
 import EventDetails from "./components/Event/EventDetails";
+import HomePage from "./components/HomePage";
 
 
 
@@ -24,7 +25,7 @@ function App() {
           <NavigationBar logout={logout}/>
         <Routes>
             <Route path={"/login"} element={<LoginPage login={login} register={register}/>}></Route>
-            <Route path={"/"} element={<LoginPage login={login} register={register}/>}></Route>
+            <Route path={"/"} element={<HomePage></HomePage>}></Route>
 
             <Route element={
                 <ProtectedRoutes user={user}/>}>

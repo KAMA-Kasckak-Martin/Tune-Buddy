@@ -17,7 +17,6 @@ export default function EventDetails() {
 
     return (
         <div>
-            <p>Hallo Student</p>
             {!event && <p>Loading...</p>}
             {<div>
                 <p>{event.name}</p>
