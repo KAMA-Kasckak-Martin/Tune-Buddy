@@ -1,0 +1,15 @@
+.profile-name{
+    font-family: "Courier New";
+    font-size: xx-large;
+}
+.profile-pic{
+    border-radius: 50%;
+    margin: 20px;
+    margin-bottom: 0px;
+}
+.description{
+    width: 350px;
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 40px;
+}
