@@ -13,8 +13,9 @@ export default function NavigationBar(props: NavigationBarProps) {
     return (
         <div>{ props.user.id ?
             <div className={"nav-bar"}>
-                <NavLink to={"/"}>Startseite</NavLink>
-                <NavLink to={"/home"}>Friends</NavLink>
+                <NavLink to={"/"}>Login</NavLink>
+                <NavLink to={"/home"}>Home</NavLink>
+                <NavLink to={"/friend"}>Friends</NavLink>
                 <NavLink to={"/profile"}>Profile</NavLink>
                 <NavLink to={"/event"}>Events</NavLink>
                 <Button onClick={() => {

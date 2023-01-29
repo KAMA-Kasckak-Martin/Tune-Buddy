@@ -31,7 +31,7 @@ export default function LoginPage(props: LoginPageProps) {
 
         props.login(username, password)
             .then(user => {
-                navigate("/profile")
+                navigate("/home")
                 props.setUser(user)
             })
     }

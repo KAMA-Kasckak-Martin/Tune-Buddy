@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {Event} from "../models/Event";
+import "./EventCard.css"
 
 export type EventCardProps={
     event: Event
@@ -22,8 +23,8 @@ export default function EventCard (props:EventCardProps){
     return(
         <div>
             <p> {props.event.name}</p>
-            <button onClick={onDeleteClick}></button>
-            <button onClick={onDetailClick}></button>
+            <button  onClick={onDeleteClick} >Delete</button>
+            <button placeholder={"Detail"} onClick={onDetailClick}>Detail</button>
         </div>
     )
 }

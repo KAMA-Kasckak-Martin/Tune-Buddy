@@ -1,0 +1,25 @@
+.profile-pic{
+    border-radius: 50%;
+    margin: 20px;
+}
+.profile-name{
+    font-family: "Courier New";
+    font-size: xx-large;
+}
+.edit-btn{
+    background-color: #282c34;
+}
+.car-description{
+    font-family: "Courier New";
+}
+.description{
+    width: 300px;
+    height: 50px;
+    background-color: #A9A9A9;
+    text-align: center;
+    border-style: none;
+}
+.part{
+    margin: 20px;
+
+}

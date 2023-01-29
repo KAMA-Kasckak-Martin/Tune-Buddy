@@ -9,6 +9,7 @@ import { v4 as uuid } from 'uuid';
 import AddParts from "./Parts/AddParts";
 import axios from "axios";
 import { useParams} from "react-router-dom";
+import "./ProfilePage.css"
 export type ProfileProps={
     user: User
     setUser:(user:User)=> void
@@ -67,17 +68,17 @@ export default function ProfilePage(props:ProfileProps){
 
     return(
         <div>
-            <h2>{profileUser.name}</h2>
-            <img src={profileUser.car.img} width={250} height={250}/>
+            <h2 className={"profile-name"}>{profileUser.name}</h2>
+            <img className={"profile-pic"} src={profileUser.car.img} width={250} height={250}/>
             <br/>
-            {props.canEdit ? <Button size={"small"} variant={"contained"} onClick={onEditClick}>{edit ? "Save" : "Edit"}</Button> : null }
+            {props.canEdit ? <Button className={"edit-btn"} size={"small"} variant={"contained"} onClick={onEditClick}>{edit ? "Save" : "Edit"}</Button> : null }
             { edit ?  <SingleImageUploadComponent setCarImg={setCarImage}/> : null }
             <br/>
-            <p>Car Description:</p>
-            <input type="text" disabled={!edit} value={desc} onChange={onDescChange}/>
-            <p>Parts:</p>
+            <h3 className={"car-description"}>Car Description</h3>
+            <input className={"description"} type="text" disabled={!edit} value={desc} onChange={onDescChange}/>
+            <p className={"car-description"}>Parts</p>
             { edit ? <AddParts addEvent={onPartsAdd}/> : null}
-            <div>{tuningParts.map((part, index)=><Parts key={index} part={part} editable={edit} removeEvent={onPartsRemove}/>)}</div>
+            <div className={"part"}>{tuningParts.map((part, index)=><Parts key={index} part={part} editable={edit} removeEvent={onPartsRemove}/>)}</div>
         </div>
     )
 }

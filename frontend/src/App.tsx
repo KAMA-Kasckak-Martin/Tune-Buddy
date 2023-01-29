@@ -9,6 +9,7 @@ import ProfilePage from "./components/ProfilePage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import EventApp from "./components/EventApp";
 import EventDetails from "./components/Event/EventDetails";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -22,10 +23,11 @@ function App() {
                 <Routes>
                     <Route path={"/login"} element={<LoginPage login={login} register={register} setUser={setUpdatedUser}/>}></Route>
                     <Route path={"/"} element={<LoginPage login={login} register={register} setUser={setUpdatedUser}/>}></Route>
+                    <Route path={"/home"} element={<HomePage/>}></Route>
 
                     <Route element={
                         <ProtectedRoutes user={user}/>}>
-                        <Route path={"/home"} element={<FriendPage user={user} ></FriendPage>}></Route>
+                        <Route path={"/friend"} element={<FriendPage user={user} ></FriendPage>}></Route>
                         <Route path={"/profile"} element={<ProfilePage user={user} setUser={setUpdatedUser} canEdit={true}/>}></Route>
                         <Route path={"/profile/:id"} element={<ProfilePage user={user} setUser={setUpdatedUser} canEdit={false}/>}></Route>
                         <Route path={"/event"} element={<EventApp />}></Route>

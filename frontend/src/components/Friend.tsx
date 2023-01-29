@@ -1,6 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import {FriendProps} from "./FriendPage";
+import "./Friend.css"
 
 export default function Friend(props: FriendProps){
     const navigate= useNavigate()
@@ -11,9 +12,9 @@ export default function Friend(props: FriendProps){
 
     return(
         <div>
-            <p>{props.user.name}</p>
-            <img src={props.user.car.img} onClick={onDetailClick}/>
-            <p>{props.user.car.description}</p>
+            <p className={"profile-name"}>{props.user.name}</p>
+            <img className={"profile-pic"} src={props.user.car.img} width={250} height={250} onClick={onDetailClick}/>
+            <p className={"description"}>{props.user.car.description}</p>
         </div>
     )
 }

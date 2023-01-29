@@ -1,6 +1,7 @@
 import {NewEvent} from "../models/Event";
 import {ChangeEvent, useState} from "react";
 import {Button, TextField} from "@mui/material";
+import "./AddEvent.css"
 
 
 export type AddEventProps={
@@ -29,9 +30,9 @@ export default function AddEvent(props:AddEventProps){
 
     return(
         <div>
-            <TextField placeholder={"name"} value={name} onChange={onNameChange}/>
-            <TextField placeholder={"description"} value={description} onChange={onDescChange}/>
-            <Button size={"large"} variant={"contained"} onClick={onSaveClick}>Save</Button>
+            <TextField  className={"event-name-and-description"} placeholder={"event name"} value={name} onChange={onNameChange}/>
+            <TextField className={"event-name-and-description"} placeholder={"description"} value={description} onChange={onDescChange}/>
+            <Button className={"save-btn"} size={"large"} variant={"contained"} onClick={onSaveClick}>Save</Button>
         </div>
     )
 }
