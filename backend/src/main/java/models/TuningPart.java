@@ -1,4 +1,11 @@
 package models;
 
-public record TuningPart() {
+import org.springframework.data.annotation.Id;
+
+public record TuningPart(
+        @Id
+        String id,
+        String name,
+        String shopUrl
+) {
 }
